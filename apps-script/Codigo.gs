@@ -8,6 +8,9 @@
  *
  * Como publicar: veja o README do repositório (seção "Backend: planilha e Apps Script").
  */
+/**
+*Nota dia 18/10/2026, preciso definir os contatos gerais dos sócios e um número de whatsapp fixo para atendimento com modelo de IA pra perguntas simples e seviço de encaminhamento para pessoas reais.
+*/
 
 // ------------------------------------------------------------------ estrutura
 
