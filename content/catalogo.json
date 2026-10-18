@@ -1,0 +1,93 @@
+[
+  {
+    "id": "curso-10h",
+    "ativo": true,
+    "ordem": 1,
+    "categoria": "aula",
+    "nome_pt": "Curso de kite 10 h",
+    "nome_en": "10-hour kite course",
+    "descricao_pt": "Do zero à primeira velejada, com instrutor certificado. Kite, barra, prancha, trapézio, capacete e colete inclusos.",
+    "descricao_en": "From zero to your first ride with a certified instructor. Kite, bar, board, harness, helmet and vest included.",
+    "preco_a_partir": 2000,
+    "unidade_pt": "por pessoa",
+    "unidade_en": "per person"
+  },
+  {
+    "id": "aula-avulsa",
+    "ativo": true,
+    "ordem": 2,
+    "categoria": "aula",
+    "nome_pt": "Aula avulsa",
+    "nome_en": "Single lesson",
+    "descricao_pt": "Uma hora com instrutor para revisar técnica, aprender a subir contra o vento ou o primeiro salto.",
+    "descricao_en": "One hour with an instructor to polish technique, learn to ride upwind or try your first jump.",
+    "preco_a_partir": 200,
+    "unidade_pt": "por hora",
+    "unidade_en": "per hour"
+  },
+  {
+    "id": "aluguel-dia",
+    "ativo": true,
+    "ordem": 3,
+    "categoria": "aluguel",
+    "nome_pt": "Aluguel de equipamento",
+    "nome_en": "Gear rental",
+    "descricao_pt": "Kite, barra e prancha para quem já veleja sozinho. Tamanho do kite escolhido conforme o vento do dia.",
+    "descricao_en": "Kite, bar and board for independent riders. Kite size picked for the day's wind.",
+    "preco_a_partir": 350,
+    "unidade_pt": "por dia",
+    "unidade_en": "per day"
+  },
+  {
+    "id": "downwind-cauipe",
+    "ativo": true,
+    "ordem": 4,
+    "categoria": "downwind",
+    "nome_pt": "Downwind até a Lagoa do Cauípe",
+    "nome_en": "Downwinder to Cauípe Lagoon",
+    "descricao_pt": "Cerca de 6 km pelo mar, a favor do vento, com guia. Volta de buggy até a vila.",
+    "descricao_en": "About 6 km along the coast with the wind, guided. Buggy ride back to the village.",
+    "preco_a_partir": null,
+    "unidade_pt": "por pessoa",
+    "unidade_en": "per person"
+  },
+  {
+    "id": "transfer-aeroporto",
+    "ativo": true,
+    "ordem": 5,
+    "categoria": "transfer",
+    "nome_pt": "Transfer aeroporto ↔ Cumbuco",
+    "nome_en": "Airport ↔ Cumbuco transfer",
+    "descricao_pt": "Carro com espaço para a bolsa de kite, do aeroporto de Fortaleza até a pousada.",
+    "descricao_en": "A car with room for your kite bag, from Fortaleza airport to your guesthouse.",
+    "preco_a_partir": null,
+    "unidade_pt": "por trecho",
+    "unidade_en": "per trip"
+  },
+  {
+    "id": "semana-kite",
+    "ativo": true,
+    "ordem": 6,
+    "categoria": "pacote",
+    "nome_pt": "Semana de kite",
+    "nome_en": "Kite week",
+    "descricao_pt": "Pousada perto da praia, curso ou aluguel e transfer, montados para as suas datas.",
+    "descricao_en": "Guesthouse near the beach, course or rental and transfer, put together for your dates.",
+    "preco_a_partir": null,
+    "unidade_pt": "por pessoa",
+    "unidade_en": "per person"
+  },
+  {
+    "id": "expedicao-downwind",
+    "ativo": true,
+    "ordem": 7,
+    "categoria": "downwind",
+    "nome_pt": "Expedição downwind para Jericoacoara",
+    "nome_en": "Downwind expedition to Jericoacoara",
+    "descricao_pt": "De 6 a 10 dias velejando pela costa oeste, com carro de apoio e pousadas no caminho. Para quem já veleja bem.",
+    "descricao_en": "6 to 10 days riding along the west coast with a support car and guesthouses on the way. For confident riders.",
+    "preco_a_partir": null,
+    "unidade_pt": "por pessoa",
+    "unidade_en": "per person"
+  }
+]

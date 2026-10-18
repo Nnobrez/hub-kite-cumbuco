@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="${html_lang}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${titulo_pagina}</title>
+  <meta name="description" content="${descricao_meta}">
+  <link rel="canonical" href="${url_canonica}">
+  <link rel="alternate" hreflang="pt-BR" href="${url_pt}">
+  <link rel="alternate" hreflang="en" href="${url_en}">
+  <link rel="alternate" hreflang="x-default" href="${url_pt}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${titulo_pagina}">
+  <meta property="og:description" content="${descricao_meta}">
+  <meta property="og:url" content="${url_canonica}">
+  <meta property="og:locale" content="${og_locale}">
+  <meta property="og:site_name" content="${marca}">
+  <meta name="theme-color" content="#0B3142">
+  <link rel="icon" href="${raiz}assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="${raiz}assets/fontes/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="${raiz}assets/estilo.css?v=${versao}">
+  <script type="application/ld+json">${jsonld}</script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">${pular_conteudo}</a>
+
+  <header class="topo">
+    <div class="topo-interno">
+      <a class="marca" href="./">
+        <svg class="marca-icone" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L28 14 L16 22 L4 14 Z" fill="#FFC43D"/><path d="M16 2 L16 22" stroke="#0B3142" stroke-width="1.5"/><path d="M16 22 C 14 26, 18 27, 15 31" stroke="#0B3142" stroke-width="1.5" fill="none"/></svg>
+        <span>${marca}</span>
+      </a>
+      <nav class="menu" aria-label="${nav_rotulo}">
+        <a href="#pacotes">${nav_pacotes}</a>
+        <a href="#como-funciona">${nav_como}</a>
+        <a href="#onde-velejar">${nav_spots}</a>
+        <a class="menu-idioma" href="${link_outro_idioma}" hreflang="${outro_idioma_codigo}" lang="${outro_idioma_codigo}">${outro_idioma_nome}</a>
+        <a class="btn btn-primario btn-pequeno" href="#reserva">${nav_reservar}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="hero-texto">
+        <h1>${hero_titulo}</h1>
+        <p class="hero-lead">${hero_texto}</p>
+        <div class="acoes">
+          <a class="btn btn-primario" href="#pacotes">${hero_cta}</a>
+          <a class="btn btn-secundario" href="${whatsapp_link_hero}" target="_blank" rel="noopener">${hero_cta_whatsapp}</a>
+        </div>
+      </div>
+
+      <figure class="vento" aria-labelledby="vento-titulo">
+        <figcaption class="vento-legenda-topo">
+          <h2 id="vento-titulo">${vento_titulo}</h2>
+          <p>${vento_texto}</p>
+        </figcaption>
+        <ol class="meses">
+${meses_html}
+        </ol>
+        <ul class="legenda">
+          <li><span class="amostra amostra--pico" aria-hidden="true"></span>${legenda_pico}</li>
+          <li><span class="amostra amostra--temporada" aria-hidden="true"></span>${legenda_temporada}</li>
+          <li><span class="amostra amostra--fora" aria-hidden="true"></span>${legenda_fora}</li>
+        </ul>
+      </figure>
+    </section>
+
+    <section class="secao" id="pacotes" aria-labelledby="pacotes-titulo">
+      <div class="secao-cabecalho">
+        <h2 id="pacotes-titulo">${pacotes_titulo}</h2>
+        <p>${pacotes_texto}</p>
+      </div>
+      <ul class="lista-pacotes">
+${pacotes_html}
+      </ul>
+    </section>
+
+    <section class="secao" id="como-funciona" aria-labelledby="como-titulo">
+      <div class="secao-cabecalho">
+        <h2 id="como-titulo">${como_titulo}</h2>
+      </div>
+      <ol class="passos">
+${passos_html}
+      </ol>
+    </section>
+
+    <section class="secao" id="onde-velejar" aria-labelledby="spots-titulo">
+      <div class="secao-cabecalho">
+        <h2 id="spots-titulo">${spots_titulo}</h2>
+      </div>
+      <ul class="spots">
+${spots_html}
+      </ul>
+    </section>
+
+    <section class="secao secao-reserva" id="reserva" aria-labelledby="reserva-titulo">
+      <div class="reserva-intro">
+        <h2 id="reserva-titulo">${form_titulo}</h2>
+        <p>${form_texto}</p>
+        <p class="nota-privacidade">${privacidade}</p>
+      </div>
+
+      <div class="reserva-caixa">
+        <form id="form-reserva" class="form" novalidate>
+          <div class="campo campo--largo">
+            <label for="f-nome">${campo_nome}</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" maxlength="80" required>
+          </div>
+          <div class="campo campo--largo">
+            <label for="f-whatsapp">${campo_whatsapp}</label>
+            <input id="f-whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" required aria-describedby="f-whatsapp-dica">
+            <small id="f-whatsapp-dica">${campo_whatsapp_dica}</small>
+          </div>
+          <div class="campo campo--largo">
+            <label for="f-email">${campo_email}</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="120">
+          </div>
+          <div class="campo campo--largo">
+            <label for="f-pacote">${campo_pacote}</label>
+            <select id="f-pacote" name="pacote_id" required>
+              <option value="">${campo_pacote_vazio}</option>
+${opcoes_pacotes}
+              <option value="outro">${campo_pacote_outro}</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="f-chegada">${campo_chegada}</label>
+            <input id="f-chegada" name="data_chegada" type="date">
+          </div>
+          <div class="campo">
+            <label for="f-saida">${campo_saida}</label>
+            <input id="f-saida" name="data_saida" type="date">
+          </div>
+          <div class="campo">
+            <label for="f-pessoas">${campo_pessoas}</label>
+            <input id="f-pessoas" name="pessoas" type="number" min="1" max="20" value="1" inputmode="numeric">
+          </div>
+          <div class="campo">
+            <label for="f-nivel">${campo_nivel}</label>
+            <select id="f-nivel" name="nivel">
+${opcoes_niveis}
+            </select>
+          </div>
+          <div class="campo campo--largo">
+            <label for="f-mensagem">${campo_mensagem}</label>
+            <textarea id="f-mensagem" name="mensagem" rows="3" maxlength="1000"></textarea>
+          </div>
+          <div class="campo-isca" aria-hidden="true">
+            <label for="f-site">Site</label>
+            <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="form-erro" id="form-erro" role="alert" hidden></p>
+          <div class="form-acoes">
+            <button class="btn btn-primario" type="submit" id="btn-enviar">${botao_enviar}</button>
+          </div>
+        </form>
+
+        <div class="sucesso" id="sucesso" hidden tabindex="-1">
+          <h3 id="sucesso-titulo">${sucesso_titulo}</h3>
+          <p id="sucesso-texto">${sucesso_texto} <strong id="sucesso-codigo"></strong>.</p>
+          <a class="btn btn-primario" id="sucesso-whatsapp" href="#" target="_blank" rel="noopener">${sucesso_botao}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="perguntas" aria-labelledby="faq-titulo">
+      <div class="secao-cabecalho">
+        <h2 id="faq-titulo">${faq_titulo}</h2>
+      </div>
+      <div class="faq">
+${faq_html}
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-interno">
+      <p class="rodape-marca">${marca}</p>
+      <p>${rodape_local}</p>
+      <p class="rodape-links">
+        <a href="${whatsapp_link_hero}" target="_blank" rel="noopener">WhatsApp</a>
+${instagram_html}
+        <a href="${link_outro_idioma}" hreflang="${outro_idioma_codigo}" lang="${outro_idioma_codigo}">${outro_idioma_nome}</a>
+      </p>
+      <p class="rodape-ano">© ${ano} ${marca}</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-flutuante" href="${whatsapp_link_hero}" target="_blank" rel="noopener">${whatsapp_flutuante}</a>
+
+  <script id="config-site" type="application/json">${config_json}</script>
+  <script src="${raiz}assets/app.js?v=${versao}" defer></script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+/* Hub Kite Cumbuco — estilos
+   Paleta: mar (texto), céu (fundo), lagoa (ação), sol (pico do vento).
+   Fonte única: Archivo, usando o eixo de largura (wdth) como recurso de tipografia:
+   títulos expandidos (vento, velocidade), números condensados (tabela de preços).
+   A fonte é servida pelo próprio site (sem Google Fonts): mais rápida e sem rastreio de terceiros. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("fontes/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("fontes/archivo-latin-ext-wdth-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --mar: #0B3142;
+  --ceu: #EEF6F8;
+  --branco: #FFFFFF;
+  --lagoa: #0E6F68;
+  --lagoa-escura: #0B5A54;
+  --lagoa-clara: #BFE3DD;
+  --sol: #FFC43D;
+  --nevoa: #DCE9EE;
+  --texto-2: #3E5C6B;
+  --borda-campo: #6F8A96;
+  --erro: #A3271F;
+  --linha: rgba(11, 49, 66, 0.16);
+
+  --fonte: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --largura: 72rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --raio: 8px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--ceu);
+  color: var(--mar);
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* O atributo hidden precisa vencer os display: grid/flex definidos abaixo. */
+[hidden] { display: none !important; }
+
+/* Âncoras não ficam escondidas atrás do topo fixo. */
+section[id] { scroll-margin-top: 4.5rem; }
+
+a { color: var(--lagoa); text-underline-offset: 0.18em; }
+a:hover { color: var(--lagoa-escura); }
+
+:focus-visible {
+  outline: 3px solid var(--mar);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.1; }
+
+h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 800;
+  font-variation-settings: "wdth" 115;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-variation-settings: "wdth" 100;
+}
+
+p { margin: 0; }
+
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.pular {
+  position: absolute;
+  left: 1rem; top: -4rem;
+  z-index: 20;
+  padding: 0.6rem 1rem;
+  background: var(--mar);
+  color: var(--branco);
+  border-radius: var(--raio);
+}
+.pular:focus { top: 1rem; color: var(--branco); }
+
+/* ---------- Botões ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.9rem;
+  padding: 0.75rem 1.3rem;
+  border: 2px solid transparent;
+  border-radius: var(--raio);
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primario { background: var(--lagoa); color: var(--branco); }
+.btn-primario:hover { background: var(--lagoa-escura); color: var(--branco); }
+
+.btn-secundario { background: transparent; color: var(--mar); border-color: var(--mar); }
+.btn-secundario:hover { background: var(--mar); color: var(--branco); }
+
+.btn-pequeno { min-height: 2.4rem; padding: 0.45rem 0.95rem; font-size: 0.95rem; }
+
+.btn[disabled] { opacity: 0.6; cursor: progress; }
+
+/* ---------- Topo ---------- */
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(238, 246, 248, 0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--linha);
+}
+
+.topo-interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0.7rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--mar);
+  text-decoration: none;
+  font-weight: 800;
+  font-variation-settings: "wdth" 112;
+  font-size: 1.05rem;
+}
+.marca:hover { color: var(--mar); }
+.marca-icone { width: 1.6rem; height: 1.6rem; }
+
+.menu { display: flex; align-items: center; gap: 1.4rem; }
+.menu a:not(.btn) { color: var(--mar); text-decoration: none; font-weight: 600; font-size: 0.97rem; }
+.menu a:not(.btn):hover { text-decoration: underline; }
+
+.marca span { white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .menu a[href^="#"]:not(.btn) { display: none; }
+  .menu { gap: 0.9rem; }
+}
+
+/* No celular o botão de WhatsApp flutuante e os botões do topo da página já levam ao pedido. */
+@media (max-width: 480px) {
+  .menu .btn { display: none; }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5.5rem) var(--gutter) clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero h1 {
+  max-width: 15ch;
+  font-size: clamp(2.5rem, 7.2vw, 5.4rem);
+  font-weight: 850;
+  font-variation-settings: "wdth" 125;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+
+.hero-lead {
+  max-width: 38rem;
+  margin-top: 1.4rem;
+  font-size: clamp(1.08rem, 1.6vw, 1.25rem);
+  color: var(--texto-2);
+}
+
+.acoes { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+
+/* Faixa do vento: o elemento de assinatura da página. */
+
+.vento {
+  margin: clamp(3rem, 7vw, 4.5rem) 0 0;
+  padding-top: 1.75rem;
+  border-top: 2px solid var(--mar);
+}
+
+.vento-legenda-topo {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) minmax(0, 32rem);
+  gap: 0.5rem 2.5rem;
+  align-items: baseline;
+}
+.vento-legenda-topo h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); }
+.vento-legenda-topo p { color: var(--texto-2); }
+
+.meses {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(3px, 0.8vw, 8px);
+  align-items: end;
+  height: clamp(9rem, 20vw, 13rem);
+}
+
+.mes {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.barra {
+  display: block;
+  border-radius: 4px 4px 0 0;
+  transform-origin: bottom;
+}
+.mes--pico .barra { height: 100%; background: var(--sol); }
+.mes--temporada .barra { height: 62%; background: var(--lagoa-clara); }
+.mes--fora .barra { height: 24%; background: var(--nevoa); }
+
+.mes-nome {
+  font-size: clamp(0.72rem, 1.4vw, 0.9rem);
+  font-variation-settings: "wdth" 75;
+  color: var(--texto-2);
+  text-align: center;
+}
+.mes--pico .mes-nome { color: var(--mar); font-weight: 800; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .barra { animation: soprar 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .mes:nth-child(1) .barra { animation-delay: 0ms; }
+  .mes:nth-child(2) .barra { animation-delay: 40ms; }
+  .mes:nth-child(3) .barra { animation-delay: 80ms; }
+  .mes:nth-child(4) .barra { animation-delay: 120ms; }
+  .mes:nth-child(5) .barra { animation-delay: 160ms; }
+  .mes:nth-child(6) .barra { animation-delay: 200ms; }
+  .mes:nth-child(7) .barra { animation-delay: 240ms; }
+  .mes:nth-child(8) .barra { animation-delay: 280ms; }
+  .mes:nth-child(9) .barra { animation-delay: 320ms; }
+  .mes:nth-child(10) .barra { animation-delay: 360ms; }
+  .mes:nth-child(11) .barra { animation-delay: 400ms; }
+  .mes:nth-child(12) .barra { animation-delay: 440ms; }
+}
+
+@keyframes soprar {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.legenda {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.92rem;
+  color: var(--texto-2);
+}
+.legenda li { display: inline-flex; align-items: center; gap: 0.45rem; }
+.amostra { width: 0.9rem; height: 0.9rem; border-radius: 3px; }
+.amostra--pico { background: var(--sol); }
+.amostra--temporada { background: var(--lagoa-clara); }
+.amostra--fora { background: var(--nevoa); box-shadow: inset 0 0 0 1px var(--linha); }
+
+@media (max-width: 640px) {
+  .vento-legenda-topo { grid-template-columns: 1fr; }
+}
+
+/* ---------- Seções ---------- */
+
+.secao {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5rem) var(--gutter);
+}
+
+.secao-cabecalho {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 34rem);
+  gap: 0.75rem 2.5rem;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+.secao-cabecalho p { color: var(--texto-2); }
+
+@media (max-width: 760px) {
+  .secao-cabecalho { grid-template-columns: 1fr; }
+}
+
+/* Tabela de pacotes: lida como a lousa de preços de uma barraca, linha a linha. */
+
+.lista-pacotes { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--linha); }
+
+.pacote {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11.5rem auto;
+  gap: 1rem 2rem;
+  align-items: center;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--linha);
+}
+
+.pacote-info p { margin-top: 0.35rem; color: var(--texto-2); max-width: 40rem; }
+
+.pacote-preco { display: grid; justify-items: end; text-align: right; line-height: 1.15; }
+.pacote-preco .a-partir,
+.pacote-preco .unidade { font-size: 0.85rem; color: var(--texto-2); }
+.pacote-preco .valor {
+  font-size: 1.85rem;
+  font-weight: 800;
+  font-variation-settings: "wdth" 75;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.01em;
+}
+.pacote-preco .valor--consulta { font-size: 1.15rem; font-weight: 700; font-variation-settings: "wdth" 90; }
+
+@media (max-width: 760px) {
+  .pacote { grid-template-columns: 1fr auto; }
+  .pacote-info { grid-column: 1 / -1; }
+  .pacote-preco { justify-items: start; text-align: left; }
+}
+
+/* Passos: uma sequência real, por isso numerada. */
+
+.passos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  counter-reset: passo;
+}
+
+.passos li { counter-increment: passo; }
+.passos li::before {
+  content: counter(passo);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-variation-settings: "wdth" 75;
+  line-height: 1;
+  color: var(--lagoa);
+}
+.passos p { margin-top: 0.4rem; color: var(--texto-2); }
+
+@media (max-width: 760px) {
+  .passos { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* Spots */
+
+.spots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+.spots li { padding-top: 1rem; border-top: 3px solid var(--lagoa); }
+.spots p { margin-top: 0.4rem; color: var(--texto-2); }
+
+@media (max-width: 760px) {
+  .spots { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ---------- Reserva ---------- */
+
+.secao-reserva {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.reserva-intro p { margin-top: 0.75rem; color: var(--texto-2); }
+.reserva-intro .nota-privacidade { font-size: 0.9rem; }
+
+.reserva-caixa {
+  background: var(--branco);
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+@media (max-width: 860px) {
+  .secao-reserva { grid-template-columns: 1fr; }
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1rem;
+}
+
+.campo { display: grid; gap: 0.35rem; }
+.campo--largo { grid-column: 1 / -1; }
+
+.campo label { font-weight: 600; font-size: 0.95rem; }
+.campo small { color: var(--texto-2); font-size: 0.85rem; }
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--borda-campo);
+  border-radius: var(--raio);
+  background: var(--branco);
+  color: var(--mar);
+  font: inherit;
+}
+.campo textarea { resize: vertical; min-height: 5.5rem; }
+
+.campo [aria-invalid="true"] { border-color: var(--erro); box-shadow: 0 0 0 1px var(--erro); }
+
+.campo-isca { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.form-erro { grid-column: 1 / -1; color: var(--erro); font-weight: 600; }
+
+.form-acoes { grid-column: 1 / -1; }
+.form-acoes .btn { width: 100%; }
+
+@media (max-width: 480px) {
+  .form { grid-template-columns: 1fr; }
+}
+
+.sucesso h3 { font-size: 1.5rem; font-variation-settings: "wdth" 115; font-weight: 800; }
+.sucesso p { margin: 0.75rem 0 1.25rem; color: var(--texto-2); }
+.sucesso strong { color: var(--mar); font-variant-numeric: tabular-nums; }
+
+/* ---------- Perguntas ---------- */
+
+.faq { border-top: 1px solid var(--linha); max-width: 52rem; }
+
+.faq details { border-bottom: 1px solid var(--linha); }
+
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  font-weight: 700;
+  font-size: 1.08rem;
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--lagoa);
+}
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 0 1.2rem; max-width: 44rem; color: var(--texto-2); }
+
+/* ---------- Rodapé ---------- */
+
+.rodape { background: var(--mar); color: #D5E4EA; margin-top: 2rem; }
+.rodape-interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 5.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.rodape-marca { color: var(--branco); font-weight: 800; font-variation-settings: "wdth" 112; font-size: 1.1rem; }
+.rodape a { color: var(--branco); }
+.rodape a:hover { color: var(--sol); }
+.rodape :focus-visible { outline-color: var(--sol); }
+.rodape-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.rodape-ano { font-size: 0.85rem; opacity: 0.8; }
+
+/* ---------- WhatsApp flutuante (só no celular) ---------- */
+
+.whatsapp-flutuante {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 15;
+  display: none;
+  padding: 0.75rem 1.15rem;
+  border-radius: 999px;
+  background: var(--lagoa);
+  color: var(--branco);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(11, 49, 66, 0.28);
+}
+.whatsapp-flutuante:hover { background: var(--lagoa-escura); color: var(--branco); }
+
+@media (max-width: 760px) {
+  .whatsapp-flutuante { display: inline-flex; }
+}

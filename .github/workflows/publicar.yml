@@ -1,0 +1,63 @@
+name: Publicar site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Todo dia às 06:00 de Fortaleza (09:00 UTC): puxa os preços atualizados da planilha.
+    - cron: "0 9 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Testes
+        run: |
+          python -m unittest discover -s tests
+          node --test tests/*.test.mjs
+
+      - name: Configurar GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Gerar site
+        env:
+          APPS_SCRIPT_URL: ${{ vars.APPS_SCRIPT_URL }}
+          WHATSAPP: ${{ vars.WHATSAPP }}
+          URL_BASE: ${{ vars.URL_BASE || steps.pages.outputs.base_url }}
+        run: python scripts/build.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

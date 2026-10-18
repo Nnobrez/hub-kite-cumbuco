@@ -1,0 +1,8 @@
+dist/
+__pycache__/
+*.pyc
+node_modules/
+.clasp.json
+apps-script/.clasp.json
+.DS_Store
+.env
